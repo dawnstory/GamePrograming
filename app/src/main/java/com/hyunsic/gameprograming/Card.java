@@ -17,6 +17,8 @@ public class Card {
     public static final int IMG_GREEN = 2;
     public static final int IMG_BLUE = 3;
 
+    public static final int IMG_REDS = 4;
+
     public int m_state;
     public int m_Color;
 
