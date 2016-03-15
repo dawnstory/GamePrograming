@@ -6,6 +6,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Random;
+
 /**
  * Created by hyunsic on 3/9/16.
  */
@@ -55,13 +60,31 @@ public class CardGameView extends View{
     }
 
     public void SetCardShuffle(){
-        //과제 수정부분 카드가 매번 실행때마다 바뀌게끔
-        m_Shuffle[0][0] = new Card(Card.IMG_RED);
-        m_Shuffle[0][1] = new Card(Card.IMG_BLUE);
-        m_Shuffle[1][0] = new Card(Card.IMG_GREEN);
-        m_Shuffle[1][1] = new Card(Card.IMG_GREEN);
-        m_Shuffle[2][0] = new Card(Card.IMG_BLUE);
-        m_Shuffle[2][1] = new Card(Card.IMG_RED);
+        ArrayList<Card> shuffled = new ArrayList<>();
+        Random random = new Random();
+
+        for(int i = 0; i < 2;i++){
+            shuffled.add(new Card((Card.IMG_RED)));
+            shuffled.add(new Card((Card.IMG_GREEN)));
+            shuffled.add(new Card((Card.IMG_BLUE)));
+        }
+
+//        Card[] shuffled = {new Card(Card.IMG_BLUE),new Card(Card.IMG_BLUE),new Card(Card.IMG_RED),new Card(Card.IMG_RED),
+//        new Card(Card.IMG_GREEN),new Card(Card.IMG_GREEN)};
+
+//        int randomPlace = random.nextInt(6);
+        for(int outter = 0; outter<2; outter++){
+            for(int inner = 0; inner<3; inner++){
+                int randomPlace = random.nextInt(shuffled.size());
+                m_Shuffle[inner][outter] = shuffled.remove(randomPlace);
+            }
+        }
+//        m_Shuffle[0][0] = new Card(Card.IMG_RED);
+//        m_Shuffle[0][1] = new Card(Card.IMG_BLUE);
+//        m_Shuffle[1][0] = new Card(Card.IMG_GREEN);
+//        m_Shuffle[1][1] = new Card(Card.IMG_GREEN);
+//        m_Shuffle[2][0] = new Card(Card.IMG_BLUE);
+//        m_Shuffle[2][1] = new Card(Card.IMG_RED);
     }
 
 }
